@@ -19,7 +19,7 @@ export  function App() {
   const deleteContact = contactId => {
     const info = toast.info(`Contact deleted`, {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
+      autoClose: 1000,
     });
 
     setContacts(prevState =>
@@ -47,14 +47,14 @@ export  function App() {
         `${data.name} already exist`,
         {
           position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
+          autoClose: 1000,
         }
       );
       return error;
     }
     const success = toast.success(`Contact added`, {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
+      autoClose: 1000,
     });
 
     setContacts(prevState => [
