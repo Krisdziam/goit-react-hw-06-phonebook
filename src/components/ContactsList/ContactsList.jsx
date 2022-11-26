@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './ContactsList.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 
-const ContactsList = ({ contacts, onDeleteContact }) => (
+
+const ContactsList = () => (
   <>
     <div className={styles.containerList}>
       <ul className={styles.list}>

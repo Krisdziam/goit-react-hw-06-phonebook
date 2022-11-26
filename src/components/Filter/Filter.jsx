@@ -1,7 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Filter.module.css';
 
-const Filter = ({ filter, filterState }) => {
+
+const Filter = () => {
+const dispatch = useDispatch();
+const filter = useSelector(state => state.contscts.filter);
+
+const onChange = e => {
+  dispatch(filter(e.currentTarget.value.toLowerCase()))
+}
+
+
+
   return (
     <>
       <label className={styles.label}>
@@ -9,7 +20,7 @@ const Filter = ({ filter, filterState }) => {
         <input
           className={styles.input}
           placeholder="Enter name"
-          onChange={filterState}
+          onChange={onChange}
           name="filter"
           type="text"
           value={filter}
