@@ -1,18 +1,17 @@
-import { configureStore, createAction, createReducer  } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+import { userSlice } from './userSlice';
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 
-const increment = createAction('myValue/increment')
-const decrement = createAction('myValue/decrement')
 
-
-const myReducer = createReducer(0, {
-[increment]: (state, action)=> state + action.payload, 
-[decrement]: (state, action)=> state - action.payload, 
-
-
-})
 
 export const store = configureStore({
-  reducer: {
-    myValue: myReducer
-  },
+  reducer: {},
 })
