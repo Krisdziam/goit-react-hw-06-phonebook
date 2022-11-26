@@ -6,14 +6,14 @@ import Filter from './Filter/Filter';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './App.module.css';
-
+import { nanoid } from 'nanoid';
 
 
 export  function App() {
-  // const [contacts, setContacts] = useLocalStorage(
-  //   'contacts',
-  //   []
-  // );
+  const [contacts, setContacts] = useLocalStorage(
+    'contacts',
+    []
+  );
   // const [filter, setFilter] = useState('');
 
   // const deleteContact = contactId => {
@@ -41,38 +41,38 @@ export  function App() {
   //   );
   // }, [contacts, filter]);
 
-  // const formSubmitHandler = data => {
-  //   if (isDuplicate(data)) {
-  //     const error = toast.error(
-  //       `${data.name} already exist`,
-  //       {
-  //         position: toast.POSITION.TOP_CENTER,
-  //         autoClose: 1000,
-  //       }
-  //     );
-  //     return error;
-  //   }
-  //   const success = toast.success(`Contact added`, {
-  //     position: toast.POSITION.TOP_CENTER,
-  //     autoClose: 1000,
-  //   });
+  const formSubmitHandler = data => {
+    if (isDuplicate(data)) {
+      const error = toast.error(
+        `${data.name} already exist`,
+        {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+        }
+      );
+      return error;
+    }
+    const success = toast.success(`Contact added`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+    });
 
-  //   setContacts(prevState => [
-  //     ...prevState,
-  //     { id: nanoid(), ...data },
-  //   ]);
+    setContacts(prevState => [
+      ...prevState,
+      { id: nanoid(), ...data },
+    ]);
 
-  //   return success;
-  // };
+    return success;
+  };
 
 
-  // const isDuplicate = ({ name })=> {
+  const isDuplicate = ({ name })=> {
  
-  //   const result = contacts.find(
-  //     contact => contact.name === name
-  //   );
-  //   return result;
-  // }
+    const result = contacts.find(
+      contact => contact.name === name
+    );
+    return result;
+  }
 
 
   return (
@@ -83,10 +83,9 @@ export  function App() {
       <h2>Contacts:</h2>
 
       <ContactsList
-        contacts={filterContactsByName}
-        onDeleteContact={deleteContact}
+   
       />
-      <Filter filter={filter} filterState={filterState} />
+      <Filter />
       <ToastContainer />
     </div>
   );

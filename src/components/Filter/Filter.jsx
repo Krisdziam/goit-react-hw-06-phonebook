@@ -5,7 +5,7 @@ import styles from './Filter.module.css';
 
 const Filter = () => {
 const dispatch = useDispatch();
-const filter = useSelector(state => state.contscts.filter);
+const filter = useSelector(state => state.contacts.filter);
 
 const onChange = e => {
   dispatch(filter(e.currentTarget.value.toLowerCase()))
