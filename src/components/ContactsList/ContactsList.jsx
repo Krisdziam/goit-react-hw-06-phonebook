@@ -1,28 +1,35 @@
 import React from 'react';
 import styles from './ContactsList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
 import { removeContacts } from 'redux/contactsSlice';
 
-
 const ContactsList = () => {
-const dispatch = useDispatch();
-const contacts = useSelector(state => state.contacts.contacts);
-const filter = useSelector(state => state.contacts.filter)
+  const dispatch = useDispatch();
+  const contacts = useSelector(
+    state => state.contacts.contacts
+  );
+  const filterContact = useSelector(
+    state => state.contacts.filter
+  );
 
-const onDeleteContact = (id) =>{
-  dispatch(removeContacts(id))
-}
+  const onDeleteContact = id => {
+    dispatch(removeContacts(id));
+  };
 
+  const filterContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.includes(filterContact)
+    );
+  };
 
-
-
+  const filteredContacts =
+    filterContact === '' ? contacts : filterContacts();
 
   return (
     <>
       <div className={styles.containerList}>
         <ul className={styles.list}>
-          {contacts.map(({ id, number, name }) => (
+          {filteredContacts.map(({ id, number, name }) => (
             <li className={styles.item} key={id}>
               <div className={styles.textContainer}>
                 <p className={styles.text}>{name}:</p>
